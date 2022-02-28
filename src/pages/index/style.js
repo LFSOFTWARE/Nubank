@@ -78,8 +78,20 @@ const style = StyleSheet.create({
          fontWeight: "600",
           fontSize:16,
           marginLeft:10
+    },
+    modal:{
+        backgroundColor: 'white', 
+        padding: 20,
+        width:"100%",
+        height:"96%",
+        marginTop:"6%",
+        borderRadius:6
+    },
+    iconPix:{
+        flexDirection:"row",
+        justifyContent:"space-between",
+        paddingHorizontal:10
     }
-
 })
 
 
