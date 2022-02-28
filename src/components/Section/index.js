@@ -8,7 +8,11 @@ const Section = (props) => {
     return (
         <TouchableOpacity style={style.container}>
             <View style={{width:"85%"}}>
-                <Icon name={props.sinal} style={style.icon} color="#000" size={30} />
+
+                { props.signal != "0" && 
+                              <Icon name={props.sinal} style={style.icon} color="#000" size={30} />
+
+                }
 
                 <View style={style.boxT}>
                     <Text style={style.title}>{props.title}</Text>

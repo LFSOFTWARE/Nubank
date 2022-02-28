@@ -20,7 +20,7 @@ const Item = (props) => {
 }
 
 
-const Actions = ({contexto,items}) => {
+const Actions = ({contexto}) => {
 
 
     const {set} = useContext(contexto)

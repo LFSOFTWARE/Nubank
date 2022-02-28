@@ -90,7 +90,7 @@ const style = StyleSheet.create({
     iconPix:{
         flexDirection:"row",
         justifyContent:"space-between",
-        paddingHorizontal:10
+        paddingHorizontal:5
     }
 })
 

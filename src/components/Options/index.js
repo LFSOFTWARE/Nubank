@@ -8,7 +8,7 @@ const Item = (props) => {
 
   
     return (
-        <TouchableOpacity   style={{ justifyContent: "center", alignItems: "center" }}>
+        <TouchableOpacity  onPress={props.onPress}  style={{ justifyContent: "center", alignItems: "center" }}>
             
             <View style={style.item}>
                 <Icon name={props.icon} style={style.icon} color="#000" size={30} />
@@ -23,8 +23,6 @@ const Item = (props) => {
 const Options = (props) => {
 
 
-   
-    
     return (
         <View style={style.container}>
             <FlatList
@@ -32,7 +30,7 @@ const Options = (props) => {
                 data={props.item}
 
                 renderItem={(item) => (
-                    <Item icon={item.item.icon}  text={item.item.text} />
+                    <Item icon={item.item.icon} onPress={item.item.on}  text={item.item.text} />
 
                 )}
                 horizontal
