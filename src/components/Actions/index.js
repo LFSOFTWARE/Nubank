@@ -23,14 +23,14 @@ const Item = (props) => {
 const Actions = ({contexto}) => {
 
 
-    const {set} = useContext(contexto)
+    const {setPix} = useContext(contexto)
     
     return (
         <View style={style.container}>
             <FlatList
                 style={style.lista}
                 data={[   
-                    { icon: 'rhombus-split-outline', text: "Área Pix" },
+                    { icon: 'rhombus-split-outline', text: "Área Pix",on:setPix},
                     { icon: 'barcode', text: "Pagar" },
                     { icon: 'cash-remove', text: "Transferir" },
                     { icon: 'cash-check', text: "Depositar" },
@@ -43,7 +43,7 @@ const Actions = ({contexto}) => {
                 }
 
                 renderItem={(item) => (
-                    <Item icon={item.item.icon}  on={set}  text={item.item.text} />
+                    <Item icon={item.item.icon}  on={item.item.on}  text={item.item.text} />
 
                 )}
                 horizontal

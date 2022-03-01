@@ -6,14 +6,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const Item = (props) => {
 
-  
+
     return (
-        <TouchableOpacity  onPress={props.onPress}  style={{ justifyContent: "center", alignItems: "center" }}>
-            
+        <TouchableOpacity onPress={props.onPress} style={{ justifyContent: "center", alignItems: "center" }}>
+
             <View style={style.item}>
                 <Icon name={props.icon} style={style.icon} color="#000" size={30} />
             </View>
-            
+
             <Text style={style.text}>{props.text}</Text>
         </TouchableOpacity>
     )
@@ -30,7 +30,7 @@ const Options = (props) => {
                 data={props.item}
 
                 renderItem={(item) => (
-                    <Item icon={item.item.icon} onPress={item.item.on}  text={item.item.text} />
+                    <Item icon={item.item.icon} onPress={item.item.on} text={item.item.text} />
 
                 )}
                 horizontal
