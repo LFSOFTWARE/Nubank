@@ -81,7 +81,7 @@ const style = StyleSheet.create({
     },
     modal:{
         backgroundColor: 'white', 
-        padding: 20,
+        padding: 10,
         width:"100%",
         height:"96%",
         marginTop:"6%",
@@ -91,6 +91,16 @@ const style = StyleSheet.create({
         flexDirection:"row",
         justifyContent:"space-between",
         paddingHorizontal:5
+    },
+    btnEnviar:{
+        width:50,
+        height:50,
+        backgroundColor:"#F0F1F5",
+        borderRadius:100,
+        marginLeft:"80%",
+        marginTop:"50%",
+        alignItems:"center",
+        justifyContent:"center"
     }
 })
 

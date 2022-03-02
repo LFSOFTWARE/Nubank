@@ -18,7 +18,7 @@ const Contexto = createContext()
 
 import ModalTranf from "../../components/Modal/ModalTranf";
 import ModalPix from "../../components/Modal/ModalPix";
-
+import ModalContato from '../../components/Modal/ModalContato'
 
 const Index = () => {
 
@@ -28,7 +28,8 @@ const Index = () => {
 
   //Area pix - Transferir
   const [modalTransf, setModalTranf] = useState(false);
-
+  //Area pix - Contato
+  const [modalContato, setModalContato] = useState(false);
 
 
 
@@ -40,6 +41,9 @@ const Index = () => {
     setModalTranf(!modalTransf)
   }
 
+  const setContato = () => {
+    setModalContato(!modalContato)
+  }
 
 
   return (
@@ -56,7 +60,7 @@ const Index = () => {
 
         <TouchableOpacity style={style.cardCard}>
           <Icon style={{ marginLeft: 10, transform: [{ rotate: '90deg' }] }} name="credit-card-chip-outline" color="#000" size={30} />
-          <Text style={style.cardText}>{ }</Text>
+          <Text style={style.cardText}>Meus Cartões </Text>
         </TouchableOpacity>
 
         <Card />
@@ -74,9 +78,10 @@ const Index = () => {
 
       </View>
 
-      <Contexto.Provider value={{ modaPix,  modalTransf, setTranf,setPix }}>
+      <Contexto.Provider value={{ modaPix, modalTransf, setTranf, setPix,setContato,modalContato }}>
         <ModalPix contexto={Contexto} />
         <ModalTranf contexto={Contexto} />
+        <ModalContato  contexto={Contexto}/>
       </Contexto.Provider>
 
 

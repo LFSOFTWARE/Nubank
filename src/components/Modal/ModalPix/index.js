@@ -30,7 +30,9 @@ const ModalPix = (props) => {
                 </View>
 
                 <View>
-                    <Text style={style.saldo}>Enviar</Text>
+                    <Text style={[style.saldo]}>Área Pix</Text>
+                    <Text style={{marginLeft:20,fontSize:20,marginTop:10,paddingRight:20}}>Envie e receba pagamentos a qualquer hora e dia da semana, sem pagar nada por isso.</Text>
+                    <Text style={[style.saldo,{fontSize:25}]}>Enviar</Text>
 
 
                     <Options item={[
@@ -43,7 +45,7 @@ const ModalPix = (props) => {
 
 
 
-                    <Text style={style.saldo}>Receber</Text>
+                    <Text style={[style.saldo,{fontSize:25}]}>Receber</Text>
 
                     <Options item={[
                         { icon: 'database-plus-outline', text: "Cobrar" },
