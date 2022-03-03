@@ -31,6 +31,7 @@ const Index = () => {
   //Area pix - Contato
   const [modalContato, setModalContato] = useState(false);
 
+  const [ValorTransf,setValorTransf] = useState(null);
 
 
   const setPix = () => {
@@ -78,7 +79,7 @@ const Index = () => {
 
       </View>
 
-      <Contexto.Provider value={{ modaPix, modalTransf, setTranf, setPix,setContato,modalContato }}>
+      <Contexto.Provider value={{ modaPix, modalTransf, setTranf, setPix,setContato,modalContato,ValorTransf,setValorTransf }}>
         <ModalPix contexto={Contexto} />
         <ModalTranf contexto={Contexto} />
         <ModalContato  contexto={Contexto}/>

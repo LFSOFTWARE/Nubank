@@ -15,6 +15,14 @@ const style = StyleSheet.create({
         marginTop:20,
         justifyContent:"center",
         alignItems:"center"
+    },
+    modal:{
+        backgroundColor: 'white', 
+        padding: 10,
+        width:"100%",
+        marginTop:"6%",
+        borderRadius:6,
+        flex:1
     }
 })
 

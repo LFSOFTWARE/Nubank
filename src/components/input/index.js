@@ -8,7 +8,7 @@ import Context from '../../context/context'
 
 const Input = () => {
     const [valor, setValor] = useState(0.00);
-    const {setEnviar,enviar} = useContext(Context)
+    const {setEnviar,enviar,setValorTransf} = useContext(Context)
     return (
 
         <>
@@ -19,6 +19,7 @@ const Input = () => {
             value={valor}
             onChangeText={text => {
               setValor(text)
+              setValorTransf(text.split("$")[1])
 
               if(text != 0.00 && text != "R$0,00"){
                 setEnviar(true)

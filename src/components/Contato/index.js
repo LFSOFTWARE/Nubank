@@ -2,14 +2,13 @@ import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import style from "./style";
-const Contato = ()=>{
-
+const Contato = (props)=>{
     return(
         <TouchableOpacity style={style.container}>
             <View style={style.contato}>
-                <Text>LS</Text>
+                <Text>{props.dado.sigla}</Text>
             </View>
-            <Text style={style.nome}>LUIZ FERNANDO SILVA DOS SANTOS </Text>
+            <Text style={style.nome}>{props.dado.nome}</Text>
         </TouchableOpacity>
     )
 

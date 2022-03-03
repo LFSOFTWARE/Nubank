@@ -10,7 +10,7 @@ import Context from '../../../context/context'
 
 const ModalTranf = (props) => {
 
-  const { modalTransf, setTranf,setContato } = useContext(props.contexto)
+  const { modalTransf, setTranf,setContato,setValorTransf } = useContext(props.contexto)
 
   const [enviar, setEnviar] = useState(false)
 
@@ -34,7 +34,7 @@ const ModalTranf = (props) => {
           <Text style={{ marginLeft: 25, color: 'black', fontSize: 18, marginTop: 10 }}>Saldo disponivel em conta <Text style={{ fontWeight: "bold" }}>{"R$ 5,56"}</Text></Text>
         </View>
         <View>
-          <Context.Provider value={{ setEnviar, enviar }}>
+          <Context.Provider value={{ setEnviar, enviar,setValorTransf }}>
             <Input />
 
           </Context.Provider>
