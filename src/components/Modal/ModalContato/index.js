@@ -11,23 +11,31 @@ import { LogBox } from 'react-native';
 
 import Contexto from '../../../context/context'
 
+import api from "../../../services/api";
 
 const Container = ({ dados }) => {
+
+    const { setModalConfirma, setChavePix } = useContext(Contexto)
+
     return (
-        <View style={{ marginTop: 50 }} >
-            <Text style={styleL.text}>Contatos frequentes</Text>
-            <FlatList
+        <Contexto.Provider value={{ setModalConfirma, setChavePix }} >
+            <View style={{ marginTop: 50 }} >
+                <Text style={styleL.text}>Contatos frequentes</Text>
+                <FlatList
 
-                data={dados}
-                renderItem={({ item, index }) => (<Contato dado={item} />)}
+                    data={dados}
+                    renderItem={({ item, index }) => (<Contato dado={item} />)}
 
-            />
-        </View>
+                />
+            </View>
+        </Contexto.Provider>
     )
 }
 
 
 const Contatos = (props) => {
+
+    const { setModalConfirma, setChavePix } = useContext(Contexto)
     return (
         <View>
             <Text style={styleL.text}>Contatos frequentes</Text>
@@ -37,13 +45,17 @@ const Contatos = (props) => {
                 data={props.dados}
                 horizontal
                 renderItem={(item, index) => (
-                    <TouchableOpacity key={index} style={{ justifyContent: "center", alignItems: "center" }}>
+                    <TouchableOpacity onPress={()=>{
+                        setModalConfirma(true)
+                        setChavePix(item.item.pix)
+
+                    }} key={index}  style={{ justifyContent: "center", alignItems: "center" }}>
                         <View style={styleL.contato}>
 
-                            <Text style={{ fontSize: 18, color: "black", fontWeight: "600" }}>LS</Text>
+                            <Text style={{ fontSize: 18, color: "black", fontWeight: "600" }}>{item.item.sigla}</Text>
 
                         </View>
-                        <Text style={{ fontSize: 18, color: "black", fontWeight: "600", marginLeft: 35 }}>Luiz</Text>
+                        <Text style={{ fontSize: 18, color: "black", fontWeight: "600", marginLeft: 35 }}>{item.item.nome.split(' ')[0]}</Text>
 
                     </TouchableOpacity>
                 )}
@@ -57,20 +69,29 @@ const Contatos = (props) => {
 
 const ModalContato = (props) => {
 
-    useEffect(() => {
-        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-        pesquisaContato()
-    }, [])
 
 
 
-    const { setContato, modalContato, ValorTransf } = useContext(props.contexto)
+
+
+
+
+
+    
+
+
+    const [filtoR, setFiltroR] = useState('')
+
+    const { setContato, modalContato, ValorTransf, modalConfirma, setModalConfirma, setChavePix } = useContext(props.contexto)
 
 
     const [pesquisa, setPesquisa] = useState(true)
 
     const [pix, setPix] = useState(null)
 
+    const [filto, setFiltro] = useState('')
+
+    const [contatos, setContatos] = useState([])
 
 
     const fSetPesquisaFalse = () => {
@@ -79,42 +100,37 @@ const ModalContato = (props) => {
     const fSetPesquisa = () => {
         setPesquisa(!pesquisa)
     }
+  
+    async function dadosT() {
+        try {
+            const response = await api.get("/usuarios")
 
-    //PESQUISA POR CONTATO
+            const res = response.data
 
-    const [filto, setFiltro] = useState('')
+            setContatos(res)
 
-    useEffect(() => {
-
-        pesquisaContato()
-
-    }, [filto])
-
-    const [contatos, setContatos] = useState([
-        {
-            nome: "LUIZ FERNANDO SILVA DOS SANTOS",
-            pix: "(11) 99999-9999",
-            sigla: "LS"
-        },
-        {
-            nome: "PEDRO ANTONIO DA SILVA",
-            pix: "(11) 99999-9990",
-            sigla: "PS"
-        },
-        ,
-        {
-            nome: "PEDRO MARCOS SANTOS",
-            pix: "(11) 99999-9991",
-            sigla: "PS"
+        } catch (error) {
+            alert(error.message)
         }
-    ])
-
-    const [filtoR, setFiltroR] = useState('')
+    }
 
     function pesquisaContato() {
         let result = contatos.filter(item => item.pix.includes(filto))
         setFiltroR(result)
     }
+
+    useEffect(() => {
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    }, [])
+
+
+    useEffect(() => {
+
+        pesquisaContato()
+        dadosT()
+
+    }, [filto,ValorTransf])
+
 
 
     return (
@@ -140,26 +156,20 @@ const ModalContato = (props) => {
                     <Text style={{ marginLeft: 25, color: 'black', fontSize: 18, marginTop: 10 }}>
                         Encontre um contato na sua lista ou inicia uma nova transfernêcia <Text style={{ fontWeight: "bold" }}>R$ {ValorTransf}</Text></Text>
                 </View>
-                <View>
-                    <Contexto.Provider value={{ fSetPesquisa, fSetPesquisaFalse, setPix, setFiltro }}>
+                <Contexto.Provider value={{ setChavePix, fSetPesquisa, fSetPesquisaFalse, setPix, setFiltro, setModalConfirma, filtoR }}>
+                    <View>
+
                         <InputChave />
-                    </Contexto.Provider>
 
-                </View>
-                {pesquisa == true &&
-                    <>
+                    </View>
+                   
 
-                        <Contatos dados={filtoR} />
-                        <Container dados={filtoR} />
-                    </>
-                }
-                {pesquisa == false &&
-                    <>
+                            <Contatos dados={filtoR} />
+                            <Container dados={filtoR} />
+                       
+                   
 
-                        <Container dados={filtoR} />
-                    </>
-                }
-
+                </Contexto.Provider>
 
 
             </ScrollView>

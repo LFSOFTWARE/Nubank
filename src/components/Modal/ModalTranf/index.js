@@ -10,7 +10,7 @@ import Context from '../../../context/context'
 
 const ModalTranf = (props) => {
 
-  const { modalTransf, setTranf,setContato,setValorTransf } = useContext(props.contexto)
+  const { modalTransf, setTranf,setContato,setValorTransf,valor } = useContext(props.contexto)
 
   const [enviar, setEnviar] = useState(false)
 
@@ -31,10 +31,10 @@ const ModalTranf = (props) => {
         </View>
         <View>
           <Text style={style.saldo}>Qual é o valor da tranferência?</Text>
-          <Text style={{ marginLeft: 25, color: 'black', fontSize: 18, marginTop: 10 }}>Saldo disponivel em conta <Text style={{ fontWeight: "bold" }}>{"R$ 5,56"}</Text></Text>
+          <Text style={{ marginLeft: 25, color: 'black', fontSize: 18, marginTop: 10 }}>Saldo disponivel em conta <Text style={{ fontWeight: "bold" }}>R$ {parseFloat(valor).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}</Text></Text>
         </View>
         <View>
-          <Context.Provider value={{ setEnviar, enviar,setValorTransf }}>
+          <Context.Provider value={{ setEnviar, enviar,setValorTransf,valor }}>
             <Input />
 
           </Context.Provider>

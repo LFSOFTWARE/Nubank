@@ -14,6 +14,9 @@ const Saldo = ({saldo})=>{
 
         <Text style={style.saldo}>
             R$ {saldo}
+
+
+
         </Text>
     </TouchableOpacity>
     )

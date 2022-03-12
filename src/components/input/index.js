@@ -7,8 +7,8 @@ import Context from '../../context/context'
 
 
 const Input = () => {
-    const [valor, setValor] = useState(0.00);
-    const {setEnviar,enviar,setValorTransf} = useContext(Context)
+    const [valor2, setValor] = useState(0.00);
+    const {setEnviar,enviar,setValorTransf,valor} = useContext(Context)
     return (
 
         <>
@@ -16,12 +16,12 @@ const Input = () => {
         <TextInputMask
             type={'money'}
             style={style.input}
-            value={valor}
+            value={valor2}
             onChangeText={text => {
               setValor(text)
               setValorTransf(text.split("$")[1])
 
-              if(text != 0.00 && text != "R$0,00"){
+              if(text != 0.00 && text != "R$0,00" ){
                 setEnviar(true)
 
               }else{
